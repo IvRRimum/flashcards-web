@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  host: <%= ENV.fetch("POSTGRES_HOST") %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: unicode
+  username: <%= ENV.fetch("POSTGRES_USER") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
+  port: <%= ENV.fetch("POSTGRES_PORT") %>
+
+
+development:
+  <<: *default
+  database: chinese_flashcards_development
+
+test:
+  <<: *default
+  database: chinese_flashcards_test
+
+production:
+  <<: *default
+  database: chinese_flashcards_production

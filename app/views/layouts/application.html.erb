@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="py-3">
+        <ul class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <li class="nav-item">
+            <%= link_to "CHINESE FLASHCARDS", root_path, class: "nav-link text-white font-bold font-sans" %>
+          </li>
+
+          <% if !member_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Log in", new_member_session_path, class: "nav-link text-white text-sm" %>
+            </li>
+          <% end %>
+
+          <% if member_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Flashcard Categories", flashcard_categories_path, class: "nav-link text-white text-sm" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log out", destroy_member_session_path, method: :delete, class: "nav-link text-white text-sm" %>
+            </li>
+          <% end %>
+        </ul>
+      </header>
+
+      <% if notice %>
+        <p class="mt-2 alert alert-primary"><%= notice %></p>
+      <% end %>
+
+      <% if alert %>
+        <p class="mt-2 alert alert-danger"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

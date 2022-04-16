@@ -1,0 +1,13 @@
+<h1>Flashcard categories</h1>
+
+<%= link_to "New flashcard category", new_flashcard_category_path, class: "btn btn-primary mb-4" %>
+
+<div class="flashcard-categories row">
+  <% @flashcard_categories.each do |flashcard_category| %>
+    <div class="col-12 col-lg-4 col-xl-3">
+      <%= link_to flashcard_category, class: "text-decoration-none" do %>
+        <%= render flashcard_category, truncate_text: true %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

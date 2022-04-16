@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-4">
+    <%= render @flashcard_category %>
+    <%= link_to flashcard_category_play_path(@flashcard_category.id), class: "btn btn-success col-12 mb-2 text-white py-3 border-b-4 border-green-700" do %>
+      <i class="bi bi-play-fill text-xl"></i> <span class="text-xl font-extrabold">PLAY</span>
+    <% end %>
+    <%= link_to edit_flashcard_category_path(@flashcard_category.id), class: "btn btn-success col-12 mb-2 text-white" do %>
+      <i class="bi bi-pencil-square"></i> <small>Edit Flashcard Category</small>
+    <% end %>
+    <%= link_to @flashcard_category, method: :delete, class: "btn btn-danger col-12 mb-2 text-white", data: {confirm: "Are you sure?"} do %>
+      <i class="bi bi-trash"></i> <small>Delete Flashcard Category</small>
+    <% end %>
+    <%= link_to new_flashcard_path(flashcard_category_id: @flashcard_category.id), class: "btn btn-warning col-12 text-white" do %>
+      <i class="bi bi-plus"></i> <small>Create Flashcard</small>
+    <% end %>
+  </div>
+  <div class="col-8">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" 
+                id="nav-home-tab" 
+                data-bs-toggle="tab" 
+                data-bs-target="#flashcards" 
+                type="button" role="tab" 
+                              aria-controls="flashcards" 
+                              aria-selected="true">
+          Flashcards
+        </button>
+        <button class="nav-link" 
+                id="nav-profile-tab" 
+                data-bs-toggle="tab" 
+                data-bs-target="#nav-profile" 
+                type="button" 
+                role="tab" 
+                aria-controls="nav-profile" 
+                aria-selected="false">
+          Flashcard Answers
+        </button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="flashcards" role="tabpanel" aria-labelledby="flashcards">
+        <div class="row mt-3">
+          <% @flashcards.each do |flashcard| %>
+            <div class="col-3">
+              <%= link_to flashcard_path(flashcard.id), class: "text-decoration-none" do %>
+                <% render flashcard %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+    </div>
+  </div>
+</div>

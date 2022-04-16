@@ -1,0 +1,30 @@
+<div id="flashcard_game_category_id" class="d-none"><%= @flashcard_category.id %></div>
+
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div class="mx-2 mx-lg-0 card bg-light mb-3 cursor-pointer" id="flashcard">
+      <div class="card-header text-dark" id="hanzi">
+        &nbsp;
+      </div>
+      <div class="card-body text-center">
+        <span class="font-bold">
+          <span class="text-dark" id="pinyin"></span><br />
+          <span class="font-light text-dark" id="english"></span>
+      </div>
+    </div>
+
+    <div class="row d-none" id="answer_response">
+      <div class="col-6">
+        <div class="answer-btn btn btn-success text-white col-12 py-3 border-b-4 border-green-700" id="flashcard_correct">
+          <i class="bi bi-hand-thumbs-up text-xl"></i>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="answer-btn btn btn-danger text-white col-12 py-3 border-b-4 border-red-700" id="flashcard_incorrect">
+          <i class="bi bi-hand-thumbs-down text-xl"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<%= form_with(model: flashcard) do |form| %>
+  <% if flashcard.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(flashcard.errors.count, "error") %> prohibited this flashcard from being saved:</h2>
+
+      <ul>
+        <% flashcard.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :flashcard_category_id %>
+
+  <div>
+    <%= form.label :english, style: "display: block" %>
+    <%= form.text_field :english, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :hanzi, style: "display: block" %>
+    <%= form.text_field :hanzi, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :pinyin, style: "display: block" %>
+    <%= form.text_field :pinyin, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit "Save", class: "btn btn-primary mt-2" %>
+  </div>
+<% end %>

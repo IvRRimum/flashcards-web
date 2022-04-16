@@ -1,0 +1,25 @@
+<div class="mx-2 mx-lg-0 card text-white bg-primary mb-3" id="<%= dom_id flashcard_category %>">
+  <div class="card-header text-white">
+    <% if defined?(truncate_text) && truncate_text %>
+      <%= truncate(flashcard_category.title, length: 30, seperator: "..") %>
+    <% else %>
+      <%= flashcard_category.title %>
+    <% end %>
+  </div>
+  <div class="card-body card-body-flashcard-category">
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      #<%= flashcard_category.id %>
+    </span>
+
+
+    <span class="badge rounded-pill bg-danger"><%= flashcard_category.flashcards.count %> flashcards</span>
+    <span class="badge rounded-pill bg-danger">Created at <%= l flashcard_category.created_at %></span>
+    <p class="card-text mt-3 text-white">
+      <% if defined?(truncate_text) && truncate_text %>
+        <%= truncate(flashcard_category.note, length: 100, seperator: "..") %>
+      <% else %>
+        <%= flashcard_category.note %>
+      <% end %>
+    </p>
+  </div>
+</div>
