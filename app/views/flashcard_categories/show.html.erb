@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-4">
+  <div class="col-12 col-lg-4">
     <%= render @flashcard_category %>
     <%= link_to flashcard_category_play_path(@flashcard_category.id), class: "btn btn-success col-12 mb-2 text-white py-3 border-b-4 border-green-700" do %>
       <i class="bi bi-play-fill text-xl"></i> <span class="text-xl font-extrabold">PLAY</span>
@@ -10,11 +10,11 @@
     <%= link_to @flashcard_category, method: :delete, class: "btn btn-danger col-12 mb-2 text-white", data: {confirm: "Are you sure?"} do %>
       <i class="bi bi-trash"></i> <small>Delete Flashcard Category</small>
     <% end %>
-    <%= link_to new_flashcard_path(flashcard_category_id: @flashcard_category.id), class: "btn btn-warning col-12 text-white" do %>
+    <%= link_to new_flashcard_path(flashcard_category_id: @flashcard_category.id), class: "btn btn-warning col-12 text-white mb-3" do %>
       <i class="bi bi-plus"></i> <small>Create Flashcard</small>
     <% end %>
   </div>
-  <div class="col-8">
+  <div class="col-12 col-lg-8">
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <button class="nav-link active" 
@@ -42,7 +42,7 @@
       <div class="tab-pane fade show active" id="flashcards" role="tabpanel" aria-labelledby="flashcards">
         <div class="row mt-3">
           <% @flashcards.each do |flashcard| %>
-            <div class="col-3">
+            <div class="col-12 col-lg-3">
               <%= link_to flashcard_path(flashcard.id), class: "text-decoration-none" do %>
                 <% render flashcard %>
               <% end %>
