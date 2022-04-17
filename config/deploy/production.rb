@@ -1,4 +1,6 @@
 server 'crypto-tzar-deploy', port: 22, roles: [:web, :app, :db], primary: true
+set :rvm_ruby_string, '3.1.1' # you probably have this already
+set :rvm_type, :user
 set :application, 'chinese-flashcards-web'
 set :repo_url, 'git@github.com:IvRRimum/chinese-flashcards-web.git'
 set :user,            'deploy'
@@ -28,7 +30,7 @@ set :ssh_options,     {
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
-set :branch, "master"
+set :branch, "main"
 
 set :linked_files, %w{config/database.yml config/credentials.yml.enc config/master.key}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system storage}
@@ -62,8 +64,8 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts "WARNING: HEAD is not the same as origin/master"
+      unless `git rev-parse HEAD` == `git rev-parse origin/main`
+        puts "WARNING: HEAD is not the same as origin/main"
         puts "Run `git push` to sync changes."
         exit
       end
@@ -75,14 +77,6 @@ namespace :deploy do
     on roles(:app) do
       before 'deploy:restart', 'puma:start'
       invoke 'deploy'
-    end
-  end
-
-  desc 'Restart sidekiq'
-  task :restart_sidekiq do
-    on roles(:app) do
-      execute "sudo /bin/systemctl daemon-reload"
-      execute "sudo /bin/systemctl restart sidekiq.service"
     end
   end
 
