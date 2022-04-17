@@ -69,6 +69,11 @@ group :development do
   gem "web-console"
   gem 'annotate'
   gem 'pry', '~> 0.13.1'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
