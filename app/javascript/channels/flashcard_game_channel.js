@@ -33,7 +33,10 @@ $(document).ready(function() {
       }
     });
 
-    $("#flashcard").click(function() {
+    // On clicking the flashcards
+    $("#flashcard").click(() => {flashcardsClick();});
+
+    function flashcardsClick() {
       if (flashcardState == "thinking") {
         timeThinkingForAnswer = new Date().getTime() - timeThinkingForAnswer;
         answerResponseTime = new Date().getTime();
@@ -43,8 +46,9 @@ $(document).ready(function() {
         $("#answer_response").removeClass("d-none");
         $("#flashcard").removeClass("cursor-pointer");
       }
-    });
+    }
 
+    // On clicking thumbs up/down
     $("#flashcard_correct").click(() => {SaveFlashcardAnswer(true)});
     $("#flashcard_incorrect").click(() => {SaveFlashcardAnswer(false)});
 
@@ -62,7 +66,19 @@ $(document).ready(function() {
           correct: correct
         });
       }
-    }
+    };
+
+    // Keyboard shortcuts
+    $(document).on('keypress',function(e) {
+      if(e.which == 32) {
+        flashcardsClick();
+      } else if (e.which == 110) {
+        SaveFlashcardAnswer(true);
+      } else if (e.which == 109) {
+        SaveFlashcardAnswer(false);
+      }
+      e.preventDefault();
+    });
   };
 });
 

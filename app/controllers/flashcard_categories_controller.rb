@@ -12,7 +12,7 @@ class FlashcardCategoriesController < ApplicationController
   # GET /flashcard_categories/1 or /flashcard_categories/1.json
   def show
     @flashcards = @flashcard_category.flashcards.all
-    @flashcard_answers = @flashcard_category.flashcard_answers.all.page(params[:page]).per(FLASHCARD_ANSWERS_PER_PAGE)
+    @flashcard_answers = @flashcard_category.flashcard_answers.all.order(id: :desc).page(params[:page]).per(FLASHCARD_ANSWERS_PER_PAGE)
   end
 
   # GET /flashcard_categories/new
