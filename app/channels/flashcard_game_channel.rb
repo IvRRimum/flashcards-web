@@ -13,7 +13,8 @@ class FlashcardGameChannel < ApplicationCable::Channel
     @flashcard_answer = FlashcardAnswer.new(
       fc_type: "english",
       flashcard_id: flashcard.id,
-      thinking_time: 1
+      thinking_time: 1,
+      flashcard_category: flashcard.flashcard_category
     )
 
     ActionCable.server.broadcast(current_member, {action: "populate_flashcard", flashcard: flashcard})

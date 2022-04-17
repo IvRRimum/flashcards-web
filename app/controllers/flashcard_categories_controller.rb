@@ -1,4 +1,6 @@
 class FlashcardCategoriesController < ApplicationController
+  FLASHCARD_ANSWERS_PER_PAGE = 50
+
   before_action :authenticate_member!
   before_action :set_flashcard_category, only: %i[ show edit update destroy ]
 
@@ -10,6 +12,7 @@ class FlashcardCategoriesController < ApplicationController
   # GET /flashcard_categories/1 or /flashcard_categories/1.json
   def show
     @flashcards = @flashcard_category.flashcards.all
+    @flashcard_answers = @flashcard_category.flashcard_answers.all.page(params[:page]).per(FLASHCARD_ANSWERS_PER_PAGE)
   end
 
   # GET /flashcard_categories/new

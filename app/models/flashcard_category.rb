@@ -12,4 +12,5 @@
 class FlashcardCategory < ApplicationRecord
   belongs_to :member
   has_many :flashcards, dependent: :destroy
+  has_many :flashcard_answers, dependent: :destroy
 end

@@ -37,3 +37,4 @@ en:
   time:
     formats:
       default: "%d/%m/%Y"
+      long: "%d/%m/%Y %H:%M"
