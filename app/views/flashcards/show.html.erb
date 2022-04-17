@@ -18,15 +18,15 @@
                 type="button" role="tab" 
                               aria-controls="flashcards" 
                               aria-selected="true">
-          Flashcards
+          Statistics
         </button>
         <button class="nav-link" 
-                id="nav-profile-tab" 
+                id="flashcard-answers-tab" 
                 data-bs-toggle="tab" 
-                data-bs-target="#nav-profile" 
+                data-bs-target="#flashcard-answers" 
                 type="button" 
                 role="tab" 
-                aria-controls="nav-profile" 
+                aria-controls="flashcard-answers" 
                 aria-selected="false">
           Flashcard Answers
         </button>
@@ -35,39 +35,10 @@
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="flashcards" role="tabpanel" aria-labelledby="flashcards">
         <div class="row mt-3">
-          piss
         </div>
       </div>
-      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="tab-pane fade" id="flashcard-answers" role="tabpanel" aria-labelledby="flashcard-answers-tab">
+        <%= render "/flashcard_answers/table", flashcard_answers: @flashcard_answers %>        
       </div>
     </div>
   </div>

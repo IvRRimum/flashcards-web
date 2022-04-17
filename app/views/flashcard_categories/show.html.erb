@@ -51,40 +51,7 @@
         </div>
       </div>
       <div class="tab-pane fade" id="flashcard-answers" role="tabpanel" aria-labelledby="flashcard-answers-tab">
-        <table class="table mt-3">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Flashcard</th>
-              <th scope="col">Type</th>
-              <th scope="col">Thinking time</th>
-              <th scope="col">Answer time</th>
-              <th scope="col">Correct</th>
-              <th scope="col">Created</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @flashcard_answers.each_with_index do |fa, i| %>
-              <tr>
-                <th scope="row"><%= i+1 %></th>
-                <td><%= link_to truncate("#{fa.flashcard.hanzi} #{fa.flashcard.pinyin}", length: 20), flashcard_path(fa.flashcard.id) %></td>
-                <td><%= fa.fc_type %></td>
-                <td><%= fa.thinking_time %>ms</td>
-                <td><%= fa.answer_response_time %>ms</td>
-                <td>
-                  <% if fa.correct %>
-                    <span class="badge bg-success"><i class="bi bi-hand-thumbs-up"></i></span>
-                  <% else %>
-                    <span class="badge bg-danger"><i class="bi bi-hand-thumbs-down"></i></span>
-                  <% end %>
-                </td>
-                <td><%= l fa.created_at, format: :long %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-        <%= paginate @flashcard_answers, theme: 'bootstrap-5', params: { anchor: 'flashcard-answers' } %>
+        <%= render "/flashcard_answers/table", flashcard_answers: @flashcard_answers %>        
       </div>
     </div>
   </div>

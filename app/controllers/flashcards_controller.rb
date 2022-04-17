@@ -1,4 +1,6 @@
 class FlashcardsController < ApplicationController
+  FLASHCARD_ANSWERS_PER_PAGE = 50
+
   before_action :authenticate_member!
 
   def new
@@ -50,6 +52,7 @@ class FlashcardsController < ApplicationController
 
   def show
     @flashcard = current_member.flashcards.find(params[:id])
+    @flashcard_answers = @flashcard.flashcard_answers.all.page(params[:page]).per(FLASHCARD_ANSWERS_PER_PAGE)
   end
 
   private
