@@ -1,5 +1,5 @@
 server 'crypto-tzar-deploy', port: 22, roles: [:web, :app, :db], primary: true
-set :rvm_ruby_string, '3.1.1' # you probably have this already
+set :rvm_ruby_version, '3.1.1' 
 set :rvm_type, :user
 set :application, 'chinese-flashcards-web'
 set :repo_url, 'git@github.com:IvRRimum/chinese-flashcards-web.git'
