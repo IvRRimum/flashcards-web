@@ -1,0 +1,21 @@
+{
+  "name": "chinese-flashcards-web",
+  "version": "1.0.0",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvRRimum/chinese-flashcards-web.git"
+  },
+  "author": "IvRRimum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvRRimum/chinese-flashcards-web/issues"
+  },
+  "homepage": "https://github.com/IvRRimum/chinese-flashcards-web#readme"
+}

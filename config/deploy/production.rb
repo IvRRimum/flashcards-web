@@ -35,8 +35,6 @@ set :branch, "main"
 set :linked_files, %w{config/database.yml config/credentials.yml.enc config/master.key}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system storage}
 
-#set :sidekiq_config, "config/sidekiq.yml"
-
 namespace :puma do
   Rake::Task[:restart].clear_actions
 
@@ -81,6 +79,5 @@ namespace :deploy do
   end
 
   before :starting,     :check_revision
-  after  :finishing,    :restart_sidekiq
   after  :finishing,    :cleanup
 end
