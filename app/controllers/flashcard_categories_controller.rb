@@ -6,12 +6,12 @@ class FlashcardCategoriesController < ApplicationController
 
   # GET /flashcard_categories or /flashcard_categories.json
   def index
-    @flashcard_categories = current_member.flashcard_categories.all
+    @flashcard_categories = current_member.flashcard_categories.all.order(id: :desc)
   end
 
   # GET /flashcard_categories/1 or /flashcard_categories/1.json
   def show
-    @flashcards = @flashcard_category.flashcards.all
+    @flashcards = @flashcard_category.flashcards.all.order(id: :desc)
     @flashcard_answers = @flashcard_category.flashcard_answers.all.order(id: :desc).page(params[:page]).per(FLASHCARD_ANSWERS_PER_PAGE)
   end
 
