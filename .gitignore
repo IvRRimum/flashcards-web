@@ -35,3 +35,4 @@
 .env
 .env.*
 node_modules
+yarn-error.log
