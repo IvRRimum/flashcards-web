@@ -23,6 +23,7 @@ $(document).ready(function() {
 
       received(data) {
         if (data["action"] == "populate_flashcard") {
+          $("#spinner").addClass("d-none");
           flashcardState = "thinking";
           flashcard = data["flashcard"];
           timeThinkingForAnswer = new Date().getTime();
@@ -60,6 +61,7 @@ $(document).ready(function() {
         $("#hanzi").html("&nbsp;");
         $("#answer_response").addClass("d-none");
         $("#flashcard").addClass("cursor-pointer");
+        $("#spinner").removeClass("d-none");
         flashcardGameChannel.perform("save_flashcard_answer", {
           thinking_time: timeThinkingForAnswer, 
           answer_response_time: answerResponseTime,
