@@ -24,6 +24,7 @@ class FlashcardsController < ApplicationController
 
   def edit
     @flashcard = current_member.flashcards.find(params[:id])
+    @flashcard_category = @flashcard.flashcard_category
   end
 
   def update
@@ -52,6 +53,7 @@ class FlashcardsController < ApplicationController
 
   def show
     @flashcard = current_member.flashcards.find(params[:id])
+    @flashcard_category = @flashcard.flashcard_category
     @flashcard_answers = @flashcard.flashcard_answers.all.order(id: :desc).page(params[:page]).per(FLASHCARD_ANSWERS_PER_PAGE)
   end
 

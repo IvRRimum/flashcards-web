@@ -1,0 +1,82 @@
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <% if controller_name == "home" && action_name == "index" %>
+      <li class="breadcrumb-item active" aria-current="page">
+        Home
+      </li>
+    <% else %>
+      <li class="breadcrumb-item">
+        <%= link_to "Home", root_path %>
+      </li>
+    <% end %>
+
+    <% if controller_name == "sessions" && action_name == "new"  %>
+      <li class="breadcrumb-item active" aria-current="page">
+        Log in
+      </li>
+    <% end %>
+
+    <% if controller_name == "flashcard_categories" && action_name == "index"  %>
+      <li class="breadcrumb-item active" aria-current="page">
+        Flashcard Pacs
+      </li>
+    <% end %>
+
+    <% if (controller_name == "flashcard_categories" && (action_name == "show" || action_name == "play" || action_name == "edit")) || 
+          (controller_name == "flashcards" && (action_name == "new" || action_name == "show" || action_name == "edit")) %>
+      <li class="breadcrumb-item">
+        <%= link_to "Flashcard Pacs", flashcard_categories_path %>
+      </li>
+    <% end %>
+
+    <% if controller_name == "flashcard_categories" && action_name == "show" %>
+      <li class="breadcrumb-item active" aria-current="page">
+        <%= @flashcard_category.title %>
+      </li>
+    <% end %>
+
+    <% if (controller_name == "flashcard_categories" && (action_name == "play" || action_name == "edit")) || 
+        (controller_name == "flashcards" && (action_name == "new" || action_name == "show" || action_name == "edit")) %>
+      <li class="breadcrumb-item">
+        <%= link_to @flashcard_category.title, flashcard_category_path(@flashcard_category.id) %>
+      </li>
+    <% end %>
+
+    <% if controller_name == "flashcard_categories" && action_name == "play" %>
+      <li class="breadcrumb-item active" aria-current="page">
+        Play
+      </li>
+    <% end %>
+
+    <% if controller_name == "flashcard_categories" && action_name == "edit" %>
+      <li class="breadcrumb-item active" aria-current="page">
+        Edit
+      </li>
+    <% end %>
+
+    <% if controller_name == "flashcards" && (action_name == "new") %>
+      <li class="breadcrumb-item active" aria-current="page">
+        New Flashcard
+      </li>
+    <% end %>
+
+    <% if controller_name == "flashcards" && (action_name == "show") %>
+      <li class="breadcrumb-item active" aria-current="page">
+        <%= "#{@flashcard.hanzi} #{@flashcard.pinyin}" %>
+      </li>
+    <% end %>
+
+    <% if controller_name == "flashcards" && (action_name == "edit") %>
+      <li class="breadcrumb-item">
+        <%= link_to "#{@flashcard.hanzi} #{@flashcard.pinyin}", flashcard_path(@flashcard.id) %>
+      </li>
+    <% end %>
+
+    <% if controller_name == "flashcards" && (action_name == "edit") %>
+      <li class="breadcrumb-item active" aria-current="page">
+        Edit
+      </li>
+    <% end %>
+  </ol>
+</nav>
+
