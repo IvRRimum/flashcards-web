@@ -1,2 +1,8 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="col-12">
+  <% if member_signed_in? %>
+    <h4>Todays worst performing flashcards</h4>
+    <p class="text-muted">Flashcards you have answered wrong the most today.</p>
+    <%= render "/home/todays_worst_performing_flashcards", flashcards: @todays_worst_performing_flashcards %>
+  <% else %>
+  <% end %>
+</div>
