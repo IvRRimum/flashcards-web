@@ -7,7 +7,8 @@
       <th scope="col">English</th>
       <th scope="col">Pinyin</th>
       <th scope="col">Wrong %</th>
-      <th scope="col">Answer count</th>
+      <th scope="col">Wrong answer count</th>
+      <th scope="col">Total Answer count</th>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +30,7 @@
           </div>
           <small>%<%= f.wrong_answer_percentage %></small>
         </td>
+        <td><%= f.wrong_answer_count %></td>
         <td><%= f.answer_count %></td>
       </tr>
     <% end %>
