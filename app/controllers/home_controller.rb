@@ -9,7 +9,7 @@ class HomeController < ApplicationController
         select_wrong_answer_count.
         where(
           flashcard_answers: {
-            created_at: (Time.now - 1.day)..Time.now
+            created_at: Time.now.beginning_of_day..Time.now.end_of_day
           }
         ).
         group("flashcards.id").
