@@ -63,14 +63,14 @@ $(document).ready(function() {
             spread: 180,
             particleCount: value*3,
             gravity: 2.5,
-            startVelocity: 1,
+            startVelocity: 40,
           });
         } else if (value == 100) {
           confetti({
             spread: 180,
             particleCount: value*3,
             gravity: 2.5,
-            startVelocity: 1,
+            startVelocity: 40,
           });
           $("#winstreak-progress-bar").removeClass("bg-success");
           $("#winstreak-progress-bar").addClass("bg-warning");
