@@ -3,7 +3,7 @@
 //= require jquery_ujs
 //= require bootstrap
 import "channels"
-import "./confetty";
+import "./confetty.js";
 
 // store the currently selected tab in the hash value
 $(document).ready(function() {
