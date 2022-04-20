@@ -10,6 +10,12 @@ $dark: #262626;
 @import "bootstrap";
 @import "./lib/bootstrap-icons/bootstrap-icons";
 
+@font-face {
+  font-family: FontAwesome;
+  src: font-url("fa-regular-400.woff2") format("woff2");
+}
+
+
 .card .card-body-flashcard-category {
   min-height: 12rem;
 }
@@ -19,4 +25,62 @@ $dark: #262626;
   transform: translate(-50%, 0);
   z-index: 99;
   margin-top: 41px;
+}
+
+.streak-delimiter {
+  float:left;
+  width: 10%;
+  text-align: right;
+  font-size: 0.7rem;
+  line-height: 0.9rem;
+}
+
+.progress-ico {
+  font-family: FontAwesome;
+  margin-right: -0.17rem;
+}
+
+.candy:after {
+  @extend .progress-ico;
+  content: "\e3e7";
+}
+
+.coffee:after {
+  @extend .progress-ico;
+  content: "\e13e";
+}
+
+.sun:after {
+  @extend .progress-ico;
+  content: "\f185";
+}
+
+.sunglasses:after {
+  @extend .progress-ico;
+  content: "\f892";
+}
+
+.rabbit:after {
+  @extend .progress-ico;
+  content: "\f708";
+}
+
+.space-cat:after {
+  @extend .progress-ico;
+  content: "\e001";
+}
+
+.cosmonout:after {
+  @extend .progress-ico;
+  content: "\f4fb";
+}
+
+.rocket:after {
+  @extend .progress-ico;
+  content: "\e027";
+}
+
+.eclipse:after {
+  @extend .progress-ico;
+  content: "\f749";
 }

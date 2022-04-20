@@ -1,9 +1,55 @@
 <div id="flashcard_game_category_id" class="d-none"><%= @flashcard_category.id %></div>
 <img src="/spinner.gif" id="spinner" class="position-absolute spinner">
 
-<h3 class="text-center">Playing <%= @flashcard_category.title %></h3>
+<h3 class="text-center" style="word-break: break-all;">Playing <%= @flashcard_category.title %></h3>
 <div class="text-center col-12 mb-3 text-muted">
   <small>Keyboard shortcuts: Space - Click on the flashcard, Letter n - Thumbs up, Letter m - Thumbs down</small>
+</div>
+
+<div class="row mb-4">
+  <div class="col-3"></div>
+  <div class="col-12 col-lg-6">
+    <h5>Win Streak <div class="d-none text-warning max-win-streak-acheaved">Congratulations! 50 Win streak archeaved!</div></h5>
+    <div class="progress">
+      <div id="winstreak-progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="streak-delimiter text-muted" data-val="10">
+      | <div class="progressVal">&nbsp;5</div>
+      <div class="progress-ico candy d-none"></div>
+    </div>
+    <div class="streak-delimiter text-muted" data-val="20">
+      | <div class="progressVal">10</div>
+      <div class="progress-ico coffee d-none"></div>
+    </div>
+    <div class="streak-delimiter text-muted" data-val="30">
+      | <div class="progressVal">15</div>
+      <div class="progress-ico sun d-none"></div>
+    </div>
+    <div class="streak-delimiter text-muted" data-val="40">
+      | <div class="progressVal">20</div>
+      <div class="progress-ico sunglasses d-none"></div>
+    </div>
+    <div class="streak-delimiter text-muted" data-val="50">
+      | <div class="progressVal">25</div>
+      <div class="progress-ico rabbit d-none"></div>
+    </div>
+    <div class="streak-delimiter text-muted" data-val="60">
+      | <div class="progressVal">30</div>
+      <div class="progress-ico space-cat d-none"></div>
+    </div>
+    <div class="streak-delimiter text-muted" data-val="70">
+      |<div class="progressVal">35</div>
+      <div class="progress-ico cosmonout d-none"></div>
+    </div>
+    <div class="streak-delimiter text-muted"  data-val="80">
+      |<div class="progressVal">40</div>
+      <div class="progress-ico rocket d-none"></div>
+    </div>
+    <div class="streak-delimiter text-muted" data-val="90">
+      | <div class="progressVal">45</div>
+      <div class="progress-ico eclipse d-none"></div>
+    </div>
+  </div>
 </div>
 
 <div class="row">

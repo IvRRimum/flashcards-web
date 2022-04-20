@@ -10,6 +10,7 @@ $(document).ready(function() {
     var flashcardState = "new";
     var timeThinkingForAnswer;
     var answerResponseTime;
+    var winStreak = {value: 0};
 
     const flashcardGameChannel = consumer.subscriptions.create("FlashcardGameChannel", {
       connected() {
@@ -34,6 +35,61 @@ $(document).ready(function() {
       }
     });
 
+    // On winstreak change update the winstreak progress bar
+    var winStreakProxy = new Proxy(winStreak, {
+      set: function (target, key, value) {
+        target[key] = value;
+
+        $("#winstreak-progress-bar").css('width', value+'%').attr('aria-valuenow', value);
+        if (value == 10 || 
+          value == 20 || 
+          value == 30 || 
+          value == 40 || 
+          value == 50 || 
+          value == 60 || 
+          value == 70 || 
+          value == 80 || 
+          value == 90) {
+          $("#winstreak-progress-bar").addClass("bg-success");
+          $("#winstreak-progress-bar").removeClass("bg-warning");
+          $(".max-win-streak-acheaved").addClass("d-none");
+          $(".max-win-streak-acheaved").removeClass("d-inline");
+
+          $(".streak-delimiter[data-val='"+value+"'] .progressVal").addClass("d-none");
+          $(".streak-delimiter[data-val='"+value+"'] .progress-ico").removeClass("d-none");
+          $(".streak-delimiter[data-val='"+value+"']").removeClass("text-muted");
+          $(".streak-delimiter[data-val='"+value+"']").addClass("text-warning");
+          confetti({
+            spread: 180,
+            particleCount: value*3,
+            gravity: 3,
+          });
+        } else if (value == 100) {
+          confetti({
+            spread: 180,
+            particleCount: value*3,
+            gravity: 3,
+          });
+          $("#winstreak-progress-bar").removeClass("bg-success");
+          $("#winstreak-progress-bar").addClass("bg-warning");
+          $(".max-win-streak-acheaved").removeClass("d-none");
+          $(".max-win-streak-acheaved").addClass("d-inline");
+        } else if (value == 0) {
+          $("#winstreak-progress-bar").addClass("bg-success");
+          $("#winstreak-progress-bar").removeClass("bg-warning");
+          $(".max-win-streak-acheaved").addClass("d-none");
+          $(".max-win-streak-acheaved").removeClass("d-inline");
+
+          $(".streak-delimiter .progressVal").removeClass("d-none");
+          $(".streak-delimiter .progress-ico").addClass("d-none");
+          $(".streak-delimiter").addClass("text-muted");
+          $(".streak-delimiter").removeClass("text-warning");
+        }
+
+        return true;
+      }
+    });
+
     // On clicking the flashcards
     $("#flashcard").click(() => {flashcardsClick();});
 
@@ -55,6 +111,16 @@ $(document).ready(function() {
 
     function SaveFlashcardAnswer(correct) {
       if (flashcardState == "waiting_for_answer") {
+        if (correct) {
+          if (winStreakProxy.value == 100) {
+            winStreakProxy.value = 0;
+          } else {
+            winStreakProxy.value += 2;
+          }
+        } else {
+          winStreakProxy.value = 0;
+        }
+
         answerResponseTime = new Date().getTime() - answerResponseTime;
         flashcardState = "done";
         $("#pinyin").html("");
@@ -83,5 +149,3 @@ $(document).ready(function() {
     });
   };
 });
-
-
