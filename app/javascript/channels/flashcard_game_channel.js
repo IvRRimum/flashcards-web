@@ -62,13 +62,13 @@ $(document).ready(function() {
           confetti({
             spread: 180,
             particleCount: value*3,
-            gravity: 3,
+            gravity: 2.5,
           });
         } else if (value == 100) {
           confetti({
             spread: 180,
             particleCount: value*3,
-            gravity: 3,
+            gravity: 2.5,
           });
           $("#winstreak-progress-bar").removeClass("bg-success");
           $("#winstreak-progress-bar").addClass("bg-warning");
