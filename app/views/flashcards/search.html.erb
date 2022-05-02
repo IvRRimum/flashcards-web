@@ -12,11 +12,11 @@
       <div class="row">
         <% @flashcards.each do |f| %>
           <% if f.flashcard_category_id == c.id %>
-            <%= link_to flashcard_path(f.id), class: "text-decoration-none" do %>
-              <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-3">
+              <%= link_to flashcard_path(f.id), class: "text-decoration-none" do %>
                 <%= render f %>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
       </div>
