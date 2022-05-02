@@ -57,9 +57,26 @@ class FlashcardsController < ApplicationController
     @flashcard_answers = @flashcard.flashcard_answers.all.order(id: :desc).page(params[:page]).per(FLASHCARD_ANSWERS_PER_PAGE)
   end
 
+  def search
+    if search_params[:q].length <= 1 
+      flash[:alert] = "Search query too short!"
+      redirect_to root_path
+    end
+
+    @flashcards = current_member.flashcards.where("pinyin ILIKE ?", "%#{search_params[:q]}%")
+    @flashcard_categories = FlashcardCategory.
+      joins(:flashcards).
+      where(member_id: current_member.id).
+      where("flashcards.pinyin ILIKE ?", "%#{search_params[:q]}%")
+  end
+
   private
 
   def flashcard_params
     params.require(:flashcard).permit(:english, :hanzi, :pinyin, :flashcard_category_id)
+  end
+
+  def search_params
+    params.permit(:q)
   end
 end

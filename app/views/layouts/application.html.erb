@@ -41,6 +41,14 @@
               <%= link_to "Log out", destroy_member_session_path, method: :delete, class: "nav-link text-white text-sm" %>
             </li>
           <% end %>
+
+          <% if member_signed_in? %>
+            <li class="nav-item ml-auto">
+              <form action="<%=flashcard_search_path%>"class="d-flex" method="GET">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+              </form>
+            </li>
+          <% end %>
         </ul>
       </header>
 
