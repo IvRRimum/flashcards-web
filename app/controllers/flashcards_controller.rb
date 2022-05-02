@@ -12,6 +12,7 @@ class FlashcardsController < ApplicationController
     @flashcard_category = current_member.flashcard_categories.find(flashcard_params[:flashcard_category_id])
     @flashcard = Flashcard.new(flashcard_params)
     @flashcard.member = current_member
+    @flashcard.pinyin_transliterated = ActiveSupport::Inflector.transliterate(@flashcard.pinyin)
 
     if @flashcard.save
       flash[:notice] = "Flashcard created successfully!"
@@ -29,6 +30,7 @@ class FlashcardsController < ApplicationController
 
   def update
     @flashcard = current_member.flashcards.find(params[:id])
+    @flashcard.pinyin_transliterated = ActiveSupport::Inflector.transliterate(flashcard_params[:pinyin])
 
     if @flashcard.update(flashcard_params)
       flash[:notice] = "Flashcard updated successfully!"
@@ -63,11 +65,23 @@ class FlashcardsController < ApplicationController
       redirect_to root_path
     end
 
-    @flashcards = current_member.flashcards.where("pinyin ILIKE ?", "%#{search_params[:q]}%")
+    @flashcards = current_member.flashcards.where(
+      "pinyin ILIKE ? OR pinyin_transliterated ILIKE ? OR english ILIKE ? OR hanzi ILIKE ?",
+      "%#{search_params[:q]}%",
+      "%#{search_params[:q]}%",
+      "%#{search_params[:q]}%",
+      "%#{search_params[:q]}%",
+    )
     @flashcard_categories = FlashcardCategory.
       joins(:flashcards).
       where(member_id: current_member.id).
-      where("flashcards.pinyin ILIKE ?", "%#{search_params[:q]}%")
+      where(
+        "flashcards.pinyin ILIKE ? OR flashcards.pinyin_transliterated ILIKE ? OR flashcards.english ILIKE ? OR flashcards.hanzi ILIKE ?",
+        "%#{search_params[:q]}%",
+        "%#{search_params[:q]}%",
+        "%#{search_params[:q]}%",
+        "%#{search_params[:q]}%",
+      )
   end
 
   private

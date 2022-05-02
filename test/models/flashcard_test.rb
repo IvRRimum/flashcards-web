@@ -6,6 +6,7 @@
 #  english               :text
 #  hanzi                 :text
 #  pinyin                :text
+#  pinyin_transliterated :text
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  flashcard_category_id :bigint
